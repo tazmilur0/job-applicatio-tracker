@@ -1,3 +1,5 @@
+
+
 //  ELEMENTS 
 let total = document.getElementById('total');
 let interview = document.getElementById('interview');
@@ -8,9 +10,44 @@ const allFilterBtn = document.getElementById('all-filter-tab');
 const interviewFilterBtn = document.getElementById('interview-filter-tab');
 const rejectedFilterBtn = document.getElementById('rejected-filter-tab');
 
+const allCardsSection = document.getElementById('allCards');
+const mainContainer = document.querySelector('main');
+const noJobsSection = document.getElementById('noJobsSection');
 
+//  COUNT FUNCTION 
+function calculateCount() {
+    let allCards = document.getElementsByClassName('card');
+    total.innerText = allCards.length;
+    tabCount.innerText = allCards.length;
 
+    let interviewCount = 0;
+    let rejectedCount = 0;
 
+    for (let i = 0; i < allCards.length; i++) {
+        let statusEl = allCards[i].getElementsByClassName('status')[0];
+        if (statusEl.classList.contains('status-interview')) interviewCount++;
+        if (statusEl.classList.contains('status-rejected')) rejectedCount++;
+    }
+
+    interview.innerText = interviewCount;
+    rejected.innerText = rejectedCount;
+}
+
+calculateCount();
+
+//  FILTER FUNCTION 
+function toggleStyle(id) {
+
+    // Reset all buttons
+    allFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white');
+    interviewFilterBtn.classList.remove('bg-[#3B82F6]', 'text-[#ffffff]');
+    rejectedFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white');
+
+    allFilterBtn.classList.add('bg-[#ffffff]', 'text-black');
+    interviewFilterBtn.classList.add('bg-[#ffffff]', 'text-black');
+    rejectedFilterBtn.classList.add('bg-[#ffffff]', 'text-black');
+
+    // Activate selected button
     const selected = document.getElementById(id);
     selected.classList.remove('bg-[#ffffff]', 'text-black');
     selected.classList.add('bg-[#3B82F6]', 'text-[#ffffff]');
@@ -41,3 +78,11 @@ const rejectedFilterBtn = document.getElementById('rejected-filter-tab');
             }
         }
     }
+
+    // Show "No jobs available" if no cards in this filtered view
+    if (id === 'all-filter-tab' || visibleCount > 0) {
+        noJobsSection.classList.add('hidden');
+    } else {
+        noJobsSection.classList.remove('hidden');
+    }
+}
