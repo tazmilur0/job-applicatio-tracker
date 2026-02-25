@@ -94,7 +94,7 @@ function getActiveTab() {
     if (rejectedFilterBtn.classList.contains('bg-[#3B82F6]')) return 'rejected-filter-tab';
 }
 
-//  MAIN EVENT LISTENER ===================
+//  MAIN EVENT LISTENER 
 mainContainer.addEventListener('click', function(event) {
 
     let card = event.target.closest('.card');
@@ -102,7 +102,7 @@ mainContainer.addEventListener('click', function(event) {
 
     let statusElement = card.getElementsByClassName('status')[0];
 
-    // MARK AS INTERVIEW
+    
     if (event.target.classList.contains('interview-btn')) {
         statusElement.innerText = 'INTERVIEW';
         statusElement.classList.remove('status-rejected');
