@@ -86,3 +86,18 @@ function toggleStyle(id) {
         noJobsSection.classList.remove('hidden');
     }
 }
+
+//  HELPER TO GET ACTIVE TAB 
+function getActiveTab() {
+    if (allFilterBtn.classList.contains('bg-[#3B82F6]')) return 'all-filter-tab';
+    if (interviewFilterBtn.classList.contains('bg-[#3B82F6]')) return 'interview-filter-tab';
+    if (rejectedFilterBtn.classList.contains('bg-[#3B82F6]')) return 'rejected-filter-tab';
+}
+
+//  MAIN EVENT LISTENER ===================
+mainContainer.addEventListener('click', function(event) {
+
+    let card = event.target.closest('.card');
+    if (!card) return;
+
+    let statusElement = card.getElementsByClassName('status')[0];
