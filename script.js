@@ -111,6 +111,19 @@ mainContainer.addEventListener('click', function(event) {
         statusElement.classList.add('bg-green-200');
     }
 
+    // MARK AS REJECTED
+    if (event.target.classList.contains('rejected-btn')) {
+        statusElement.innerText = 'REJECTED';
+        statusElement.classList.remove('status-interview');
+        statusElement.classList.add('status-rejected');
+        statusElement.classList.remove('bg-[#EEF4FF]');
+        statusElement.classList.add('bg-red-200');
+    }
+
+    // DELETE CARD
+    if (event.target.closest('.delete-btn')) {
+        card.remove();
+    }
 
     // UPDATE COUNTS AND FILTER VIEW
     calculateCount();
