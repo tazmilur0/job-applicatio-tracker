@@ -101,3 +101,18 @@ mainContainer.addEventListener('click', function(event) {
     if (!card) return;
 
     let statusElement = card.getElementsByClassName('status')[0];
+
+    // MARK AS INTERVIEW
+    if (event.target.classList.contains('interview-btn')) {
+        statusElement.innerText = 'INTERVIEW';
+        statusElement.classList.remove('status-rejected');
+        statusElement.classList.add('status-interview');
+        statusElement.classList.remove('bg-[#EEF4FF]');
+        statusElement.classList.add('bg-green-200');
+    }
+
+
+    // UPDATE COUNTS AND FILTER VIEW
+    calculateCount();
+    toggleStyle(getActiveTab());
+});
